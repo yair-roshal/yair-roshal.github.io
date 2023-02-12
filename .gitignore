@@ -2,6 +2,7 @@
 
 # my folders=======================
 **/node_modules
+/node_modules
 **/.history
 **/backup
 **/.env
