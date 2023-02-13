@@ -16,7 +16,7 @@ const dictionaryText = require('./data/dictionaryText.js')
 // let dic =dictionaryText.split(/\r?\n/).filter(Boolean).join(", ")
 
 let dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
-console.log('dictionary', dictionary)
+// console.log('dictionary', dictionary)
 
 const addWordsKeyboard = {
     reply_markup: {
@@ -41,6 +41,8 @@ bot.on('callback_query', (query) => {
     }
 })
 
+
+//отправив список слов добавляем их в словарь
 bot.on('message', (msg) => {
     if (!dictionary.includes(msg.text)) {
         dictionary = dictionary.concat(msg.text.split(/\r?\n/))
@@ -54,7 +56,9 @@ function sendRandomWord() {
     const wordEng = word.split('-')[0].trim()
     // say.speak(wordEng)
 
-    bot.sendMessage(YOUR_CHAT_ID, word)
+    bot.sendMessage(YOUR_CHAT_ID,`${randomIndex+1}. ${word}`)
+    console.log('word===', `${randomIndex+1}.  ${word}`)
+
 }
 
 // setInterval(sendRandomWord, 30 * 60 * 1000)// 30min
