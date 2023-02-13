@@ -1237,6 +1237,11 @@
   dependencies:
     "wrappy" "1"
 
+"one-time@0.0.4":
+  "integrity" "sha512-qAMrwuk2xLEutlASoiPiAMW3EN3K96Ka/ilSXYr6qR1zSVXw2j7+yDSqGTC4T9apfLYxM3tLLjKvgPdAUK7kYQ=="
+  "resolved" "https://registry.npmjs.org/one-time/-/one-time-0.0.4.tgz"
+  "version" "0.0.4"
+
 "p-timeout@^4.1.0":
   "integrity" "sha512-+/wmHtzJuWii1sXn3HCuH/FTwGhrp4tmJTxSKJbfS+vkipci6osxXM5mY0jUiRzWKMTgUT8l7HFbeSwZAynqHw=="
   "resolved" "https://registry.npmjs.org/p-timeout/-/p-timeout-4.1.0.tgz"
@@ -1442,6 +1447,13 @@
   "integrity" "sha512-jLYV0DORrzY3xaz/S9ydJL6Iz7essZeAfnAavsJ+zsJGZ1MOnsS52yRjU3uF3pJa/lla7+wisp//fxOwOH8SKQ=="
   "resolved" "https://registry.npmjs.org/sandwich-stream/-/sandwich-stream-2.0.2.tgz"
   "version" "2.0.2"
+
+"say@^0.16.0":
+  "integrity" "sha512-yEfncNu3I6lcZ6RIrXgE9DqbrEmvV5uQQ8ReM14u/DodlvJYpveqNphO55RLMSj77b06ZKNif/FLmhzQxcuUXg=="
+  "resolved" "https://registry.npmjs.org/say/-/say-0.16.0.tgz"
+  "version" "0.16.0"
+  dependencies:
+    "one-time" "0.0.4"
 
 "semver@^5.7.1":
   "integrity" "sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ=="
