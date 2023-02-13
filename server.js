@@ -44,8 +44,9 @@ bot.on('callback_query', (query) => {
 
 //отправив список слов добавляем их в словарь
 bot.on('message', (msg) => {
+    console.log('msg.text===', msg.text)
     if (msg.text == '/start') {
-        bot.sendMessage(YOUR_CHAT_ID, `Server successfully started  `)
+        bot.sendMessage(YOUR_CHAT_ID, `Server-Bot successfully started  `)
     } else if (!dictionary.includes(msg.text) && msg.text !== '/start') {
         dictionary = dictionary.concat(msg.text.split(/\r?\n/))
         bot.sendMessage(YOUR_CHAT_ID, `Successfully added "${msg.text}" to the dictionary.`)
