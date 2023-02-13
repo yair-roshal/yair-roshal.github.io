@@ -4,7 +4,7 @@ const bot = new TelegramBot(token, { polling: true })
 const YOUR_CHAT_ID = 386212074
 
 // import { config } from 'dotenv'
-import express from 'express'
+// import express from 'express'
 
 // config()
 // const app = express()
