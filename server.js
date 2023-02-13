@@ -43,7 +43,7 @@ bot.on('callback_query', (query) => {
 
 //отправив список слов добавляем их в словарь
 bot.on('message', (msg) => {
-    if (!dictionary.includes(msg.text)) {
+    if (!dictionary.includes(msg.text) && msg.text !== '/start') {
         dictionary = dictionary.concat(msg.text.split(/\r?\n/))
         bot.sendMessage(YOUR_CHAT_ID, `Successfully added "${msg.text}" to the dictionary.`)
     }
