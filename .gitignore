@@ -5,7 +5,7 @@
 /node_modules
 **/.history
 **/backup
-**/.env
+# **/.env
 **/.eslintcache 
 
 # classic ignoring files===============
