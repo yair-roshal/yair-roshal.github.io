@@ -1,6 +1,3 @@
-
-
-
 const TelegramBot = require('node-telegram-bot-api')
 const token = '6209657165:AAGifVt0gs11dAHGQ2Uz3yAz_s5u0st5arY'
 const bot = new TelegramBot(token, { polling: true })
@@ -8,7 +5,7 @@ const YOUR_CHAT_ID = 386212074
 
 // import { config } from 'dotenv'
 import express from 'express'
- 
+
 // config()
 // const app = express()
 
@@ -37,7 +34,6 @@ function sendRandomWord() {
 setInterval(sendRandomWord, 6 * 1 * 1000) //10sec
 // setInterval(sendRandomWord, 60 * 1 * 1000);//minute
 // setInterval(sendRandomWord, 60 * 60 * 1000);//hour
-
 
 // const PORT = process.env.PORT || 3000
 // app.listen(PORT, () => {
