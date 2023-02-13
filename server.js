@@ -70,7 +70,7 @@ const min = 1
 
 let interval = min * sec * ms
 
-console.log('interval:', interval / ms / sec, ' min')
+console.log('server started with interval:', interval / ms / sec, ' min')
 
 // setInterval(sendRandomWord, 30 * 60 * 1000)// 30min
 setInterval(sendRandomWord, interval) //10sec
