@@ -10,14 +10,14 @@ const YOUR_CHAT_ID = 386212074
 import express from 'express'
  
 // config()
-const app = express()
+// const app = express()
 
-app.use(express.json())
-app.use(
-  express.urlencoded({
-    extended: true
-  })
-)
+// app.use(express.json())
+// app.use(
+//   express.urlencoded({
+//     extended: true
+//   })
+// )
 
 // Словарь слов
 const dictionary = ['apple', 'banana', 'cherry', 'date', 'elderberry']
@@ -39,7 +39,7 @@ setInterval(sendRandomWord, 6 * 1 * 1000) //10sec
 // setInterval(sendRandomWord, 60 * 60 * 1000);//hour
 
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+// const PORT = process.env.PORT || 3000
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`)
+// })
