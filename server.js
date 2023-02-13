@@ -5,10 +5,28 @@ const YOUR_CHAT_ID = 386212074
 
 let dictionary = ['apple', 'banana', 'cherry', 'date', 'elderberry']
 
-bot.onText(/\/add (.+)/, (msg, match) => {
-  const words = match[1].split(/\r?\n/)
-  dictionary = dictionary.concat(words)
-  bot.sendMessage(YOUR_CHAT_ID, `Successfully added "${words}" to the dictionary.`)
+const addWordsKeyboard = {
+  reply_markup: {
+    inline_keyboard: [[
+      {
+        text: 'Add words',
+        callback_data: 'add_words'
+      }
+    ]]
+  }
+}
+
+bot.on('callback_query', query => {
+  if (query.data === 'add_words') {
+    bot.sendMessage(YOUR_CHAT_ID, 'Please send me the words, separated by newlines.', addWordsKeyboard)
+  }
+})
+
+bot.on('message', msg => {
+  if (!dictionary.includes(msg.text)) {
+    dictionary = dictionary.concat(msg.text.split(/\r?\n/))
+    bot.sendMessage(YOUR_CHAT_ID, `Successfully added "${msg.text}" to the dictionary.`)
+  }
 })
 
 function sendRandomWord() {
