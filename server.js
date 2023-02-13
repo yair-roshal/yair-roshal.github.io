@@ -6,10 +6,10 @@ const token = '6209657165:AAGifVt0gs11dAHGQ2Uz3yAz_s5u0st5arY'
 const bot = new TelegramBot(token, { polling: true })
 const YOUR_CHAT_ID = 386212074
 
-import { config } from 'dotenv'
+// import { config } from 'dotenv'
 import express from 'express'
  
-config()
+// config()
 const app = express()
 
 app.use(express.json())
