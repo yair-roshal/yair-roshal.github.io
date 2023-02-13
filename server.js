@@ -8,6 +8,7 @@ const bot = new TelegramBot(token, { polling: true })
 const YOUR_CHAT_ID = 386212074
 
 const dictionaryText = require('./data/dictionaryText.js')
+const date = new Date()
 
 // const say = require('say')
 
@@ -58,13 +59,14 @@ function sendRandomWord() {
     // say.speak(wordEng)
 
     bot.sendMessage(YOUR_CHAT_ID, `${randomIndex + 1}. ${word}`)
-    console.log('word===', `${randomIndex + 1}.  ${word}`)
+    console.log(date.toLocaleTimeString(), `--${randomIndex + 1}.  ${word}`)
 }
 const ms = 1000
 const sec = 60
 const min = 1
 
 let interval = min * sec * ms
+
 console.log('interval:', interval / ms / sec, ' min')
 
 // setInterval(sendRandomWord, 30 * 60 * 1000)// 30min
