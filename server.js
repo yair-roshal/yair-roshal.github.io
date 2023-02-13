@@ -1,5 +1,5 @@
 const { Telegraf } = require('telegraf')
-const bot = new Telegraf(process.env.BOT_TOKEN) //сюда помещается токен, который дал botFather
+const bot = new Telegraf(process.env.TELEGRAM_API_TOKEN) //сюда помещается токен, который дал botFather
 bot.start((ctx) => ctx.reply('Welcome')) //ответ бота на команду /start
 bot.help((ctx) => ctx.reply('Send me a sticker')) //ответ бота на команду /help
 bot.on('sticker', (ctx) => ctx.reply('')) //bot.on это обработчик введенного юзером сообщения, в данном случае он отслеживает стикер, можно использовать обработчик текста или голосового сообщения
