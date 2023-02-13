@@ -41,7 +41,6 @@ bot.on('callback_query', (query) => {
     }
 })
 
-
 //отправив список слов добавляем их в словарь
 bot.on('message', (msg) => {
     if (!dictionary.includes(msg.text)) {
@@ -56,10 +55,15 @@ function sendRandomWord() {
     const wordEng = word.split('-')[0].trim()
     // say.speak(wordEng)
 
-    bot.sendMessage(YOUR_CHAT_ID,`${randomIndex+1}. ${word}`)
-    console.log('word===', `${randomIndex+1}.  ${word}`)
-
+    bot.sendMessage(YOUR_CHAT_ID, `${randomIndex + 1}. ${word}`)
+    console.log('word===', `${randomIndex + 1}.  ${word}`)
 }
+const ms = 1000
+const sec = 60
+const min = 1
 
-setInterval(sendRandomWord, 30 * 60 * 1000)// 30min
-// setInterval(sendRandomWord, 1 * 10 * 1000)//10sec
+let interval = min * sec * ms
+console.log('interval:', interval / ms / sec, ' min')
+
+// setInterval(sendRandomWord, 30 * 60 * 1000)// 30min
+setInterval(sendRandomWord, interval) //10sec
