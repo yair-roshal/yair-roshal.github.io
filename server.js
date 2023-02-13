@@ -60,7 +60,9 @@ function sendRandomWord() {
     // say.speak(wordEng)
 
     bot.sendMessage(YOUR_CHAT_ID, `${randomIndex + 1}. ${word}`)
-    console.log(date.toLocaleTimeString(), `--${randomIndex + 1}.  ${word}`)
+
+    date = new Date()
+    console.log(date.toLocaleTimeString(), `--- ${randomIndex + 1}.  ${word}`)
 }
 const ms = 1000
 const sec = 60
