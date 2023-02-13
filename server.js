@@ -9,7 +9,7 @@ const YOUR_CHAT_ID = 386212074
 
 const dictionaryText = require('./data/dictionaryText.js')
 
-const say = require('say')
+// const say = require('say')
 
 // text = [address, city, state, zip].filter(Boolean).join(", ");
 
@@ -52,7 +52,7 @@ function sendRandomWord() {
     const randomIndex = Math.floor(Math.random() * dictionary.length)
     const word = dictionary[randomIndex]
     const wordEng = word.split('-')[0].trim()
-    say.speak(wordEng)
+    // say.speak(wordEng)
 
     bot.sendMessage(YOUR_CHAT_ID, word)
 }
