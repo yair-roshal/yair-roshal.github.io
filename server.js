@@ -3,7 +3,11 @@ const token = '6209657165:AAGifVt0gs11dAHGQ2Uz3yAz_s5u0st5arY'
 const bot = new TelegramBot(token, { polling: true })
 const YOUR_CHAT_ID = 386212074
 
-let dictionary = ['apple', 'banana', 'cherry', 'date', 'elderberry']
+let dictionary=[]
+const dictionaryText = require('./dictionaryText.js')
+
+ dictionary = dictionary.concat(dictionaryText.split(/\r?\n/))
+console.log('dictionary', dictionary)
 
 const addWordsKeyboard = {
   reply_markup: {
