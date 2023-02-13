@@ -4,7 +4,7 @@ const bot = new TelegramBot(token, { polling: true })
 const YOUR_CHAT_ID = 386212074
 
 let dictionary=[]
-const dictionaryText = require('./dictionaryText.js')
+const dictionaryText = require('./data/dictionaryText.js')
 
  dictionary = dictionary.concat(dictionaryText.split(/\r?\n/))
 console.log('dictionary', dictionary)
