@@ -61,5 +61,5 @@ function sendRandomWord() {
 
 }
 
-// setInterval(sendRandomWord, 30 * 60 * 1000)// 30min
-setInterval(sendRandomWord, 1 * 10 * 1000)//10sec
+setInterval(sendRandomWord, 30 * 60 * 1000)// 30min
+// setInterval(sendRandomWord, 1 * 10 * 1000)//10sec
