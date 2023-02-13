@@ -1,8 +1,45 @@
-const { Telegraf } = require('telegraf')
-const bot = new Telegraf('6209657165:AAGifVt0gs11dAHGQ2Uz3yAz_s5u0st5arY') //сюда помещается токен, который дал botFather
-// const bot = new Telegraf(process.env.TELEGRAM_API_TOKEN) //сюда помещается токен, который дал botFather
-bot.start((ctx) => ctx.reply('Welcome')) //ответ бота на команду /start
-bot.help((ctx) => ctx.reply('Send me a sticker')) //ответ бота на команду /help
-bot.on('sticker', (ctx) => ctx.reply('')) //bot.on это обработчик введенного юзером сообщения, в данном случае он отслеживает стикер, можно использовать обработчик текста или голосового сообщения
-bot.hears('hi', (ctx) => ctx.reply('Hey there')) // bot.hears это обработчик конкретного текста, данном случае это - "hi"
-bot.launch() // запуск бота
+
+
+
+const TelegramBot = require('node-telegram-bot-api')
+const token = '6209657165:AAGifVt0gs11dAHGQ2Uz3yAz_s5u0st5arY'
+const bot = new TelegramBot(token, { polling: true })
+const YOUR_CHAT_ID = 386212074
+
+import { config } from 'dotenv'
+import express from 'express'
+ 
+config()
+const app = express()
+
+app.use(express.json())
+app.use(
+  express.urlencoded({
+    extended: true
+  })
+)
+
+// Словарь слов
+const dictionary = ['apple', 'banana', 'cherry', 'date', 'elderberry']
+
+// Отправляет случайное слово из словаря
+function sendRandomWord() {
+    const randomIndex = Math.floor(Math.random() * dictionary.length)
+    const word = dictionary[randomIndex]
+    bot.sendMessage(YOUR_CHAT_ID, word)
+
+    // bot.getChat(YOUR_CHAT_ID).then(function (msg) {
+    //     console.log('11111')
+    // })
+}
+
+// Запускает функцию sendRandomWord раз в час
+setInterval(sendRandomWord, 6 * 1 * 1000) //10sec
+// setInterval(sendRandomWord, 60 * 1 * 1000);//minute
+// setInterval(sendRandomWord, 60 * 60 * 1000);//hour
+
+
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
