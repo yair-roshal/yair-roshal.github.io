@@ -8,7 +8,7 @@ const bot = new TelegramBot(token, { polling: true })
 const YOUR_CHAT_ID = 386212074
 
 const dictionaryText = require('./data/dictionaryText.js')
-const date = new Date()
+let date = new Date()
 
 // const say = require('say')
 
