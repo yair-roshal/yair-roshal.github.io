@@ -57,4 +57,5 @@ function sendRandomWord() {
     bot.sendMessage(YOUR_CHAT_ID, word)
 }
 
-setInterval(sendRandomWord, 30 * 60 * 1000)
+// setInterval(sendRandomWord, 30 * 60 * 1000)// 30min
+setInterval(sendRandomWord, 1 * 10 * 1000)//10sec
