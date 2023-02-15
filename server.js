@@ -148,13 +148,12 @@ const ms = 1000
 const sec = 60
 
 // const min = 0.1 //10sec
-// const min = 1 // 1min
-const min = 30 // 30min
+const min = 1 // 1min
+// const min = 30 // 30min
 
 let interval = min * sec * ms
 
 console.log('server started with interval:', interval / ms / sec, ' min')
-// getWord('word')
 
 getWord()
-setInterval(getWord, interval) //10sec
+setInterval(getWord, interval)
