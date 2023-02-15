@@ -90,7 +90,8 @@ function sendRandomWord(response, randomIndex, word, isOneWord) {
             : ''
 
     let textMessage =
-        `<b>__________________</b>` +
+        `<b>__________________</b>
+        ` +
         `<b>${randomIndex + 1}. ${phoneticLine}${word} </b>` +
         `
         
