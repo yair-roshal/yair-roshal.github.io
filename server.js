@@ -80,12 +80,14 @@ function sendRandomWord(response, randomIndex, word, isOneWord) {
         : ''
     phoneticLine = isOneWord ? phoneticLine : ''
 
-    let exampleLine = examples ? `${examples}` : ''
-    let audioLine = audio
-        ? `${audio}`
-        : response[0]?.phonetics[1]?.audio
-        ? `${response[0]?.phonetics[1]?.audio}`
-        : ''
+    let exampleLine = examples && isOneWord ? `${examples}` : ''
+
+    let audioLine =
+        audio && isOneWord
+            ? `${audio}`
+            : response[0]?.phonetics[1]?.audio
+            ? `${response[0]?.phonetics[1]?.audio}`
+            : ''
 
     let textMessage =
         `<b>${randomIndex + 1}. ${phoneticLine}${word} </b>` +
@@ -148,12 +150,13 @@ const ms = 1000
 const sec = 60
 
 // const min = 0.1 //10sec
-const min = 1 // 1min
+// const min = 1 // 1min
+const min = 10 // 10min
 // const min = 30 // 30min
 
 let interval = min * sec * ms
 
 console.log('server started with interval:', interval / ms / sec, ' min')
 
-getWord()//первый запуск при  старте сервера
+getWord() //первый запуск при  старте сервера
 setInterval(getWord, interval) //  запуск getWord по интервалу
