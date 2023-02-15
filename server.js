@@ -13,26 +13,88 @@ var _ = require('lodash')
 let date = new Date()
 const dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
 
-// https://api.dictionaryapi.dev/api/v2/entries/en/hello
+const axios = require('axios')
+const jose = require('node-jose')
+const private_key = process.env.PRIVATE_KEY.replace(/\\n/g, '\n')
+const serviceAccountId = process.env.SERVICE_ACCOUNT_ID
+const keyId = process.env.KEY_ID
+const now = Math.floor(new Date().getTime() / 1000)
+
+const payload = {
+    aud: 'https://iam.api.cloud.yandex.net/iam/v1/tokens',
+    iss: serviceAccountId,
+    iat: now,
+    exp: now + 3600,
+}
+
+let IAM_TOKEN
+
+jose.JWK.asKey(private_key, 'pem', { kid: keyId, alg: 'PS256' }).then(function (result) {
+    jose.JWS.createSign({ format: 'compact' }, result)
+        .update(JSON.stringify(payload))
+        .final()
+        .then(function (result) {
+            const jwt_token = result
+
+            const body = {
+                //  includes only one of the fields `yandexPassportOauthToken`, `jwt`
+                // "yandexPassportOauthToken": process.env.OAUTH_TOKEN,
+                jwt: jwt_token,
+                // end of the list of possible fields
+            }
+
+            axios
+                .post('https://iam.api.cloud.yandex.net/iam/v1/tokens', body)
+                .then((response) => {
+                    // console.log('response.data', response.data)
+                    IAM_TOKEN = response.data.iamToken
+                })
+                .catch((error) => {
+                    console.log('AXIOS ERROR_jwt: ', error.response)
+                })
+        })
+})
+
+function translateText(texts) {
+    const body = {
+        sourceLanguageCode: process.env.source_language,
+        targetLanguageCode: process.env.target_language,
+        texts: texts,
+        folderId: process.env.folder_id,
+    }
+
+    const headers = { headers: { Authorization: `Bearer ${IAM_TOKEN}` } }
+
+    axios
+        .post('https://translate.api.cloud.yandex.net/translate/v2/translate', body, headers)
+        .then((response) => {
+            translate = response.data.translations[0].text
+            console.log('translate==', translate)
+        })
+        .catch((error) => {
+            console.log('ERROR_translate: ', error.response)
+        })
+}
 
 function getWord() {
     const randomIndex = Math.floor(Math.random() * dictionary.length)
-    let word = dictionary[randomIndex]
-    const wordEng = word.split('-')[0].trim()
-    // say.speak(wordEng)
+    let wordLineDictionary = dictionary[randomIndex]
+    const leftEnglishWords = wordLineDictionary.split('-')[0].trim()
+    // say.speak(leftEnglishWords)
 
-    console.log('word all ---', word)
-    word_first = wordEng.split(' ')[0]
-    console.log('word first ---', word_first)
+    console.log('wordLineDictionary -->', wordLineDictionary)
+    firstEnglishWord = leftEnglishWords.split(' ')[0]
+    console.log('firstEnglishWord -->', firstEnglishWord)
+
     let isOneWord = true
-    if (wordEng.split(' ').length > 1) {
+    if (leftEnglishWords.split(' ').length > 1) {
         isOneWord = false
     }
     axios
-        .get('https://api.dictionaryapi.dev/api/v2/entries/en/' + word_first)
+        .get('https://api.dictionaryapi.dev/api/v2/entries/en/' + firstEnglishWord)
         .then(function (response) {
             // console.log('response.data ', response.data)
-            sendRandomWord(response.data, randomIndex, word, isOneWord)
+            sendRandomWord(response.data, randomIndex, wordLineDictionary, isOneWord)
         })
         .catch(function (error) {
             // handle error
