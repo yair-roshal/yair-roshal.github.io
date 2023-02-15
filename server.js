@@ -155,5 +155,5 @@ let interval = min * sec * ms
 
 console.log('server started with interval:', interval / ms / sec, ' min')
 
-getWord()
-setInterval(getWord, interval)
+getWord()//первый запуск при  старте сервера
+setInterval(getWord, interval) //  запуск getWord по интервалу
