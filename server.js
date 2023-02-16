@@ -3,22 +3,25 @@ const dotenv = require('dotenv')
 dotenv.config()
 const token = process.env.TELEGRAM_BOT_TOKEN
 const bot = new TelegramBot(token, { polling: true })
-const chatIdAdmin = 386212074
+const chatIdAdmin = process.env.CHAT_ID_ADMIN
+
 const dictionaryText = require('./data/dictionaryText.js')
 const startMenu = require('./constants/constants.js')
 const mainMenu = require('./constants/constants.js')
+const getWordFromDictionary = require('./utils/utils.js')
+// const { getWordFromDictionary, sendRandomWord } = require('./utils/utils.js')
 const axios = require('axios')
 var _ = require('lodash')
 
 let date = new Date()
 const dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
 
-const axios = require('axios')
 const jose = require('node-jose')
 const private_key = process.env.PRIVATE_KEY.replace(/\\n/g, '\n')
 const serviceAccountId = process.env.SERVICE_ACCOUNT_ID
 const keyId = process.env.KEY_ID
 const now = Math.floor(new Date().getTime() / 1000)
+// const say = require('say')
 
 const payload = {
     aud: 'https://iam.api.cloud.yandex.net/iam/v1/tokens',
@@ -74,104 +77,13 @@ function translateText(texts) {
         .catch((error) => {
             console.log('ERROR_translate: ', error.response)
         })
-}
 
-function getWord() {
-    const randomIndex = Math.floor(Math.random() * dictionary.length)
-    let wordLineDictionary = dictionary[randomIndex]
-    const leftEnglishWords = wordLineDictionary.split('-')[0].trim()
-    // say.speak(leftEnglishWords)
-
-    console.log('wordLineDictionary -->', wordLineDictionary)
-    firstEnglishWord = leftEnglishWords.split(' ')[0]
-    console.log('firstEnglishWord -->', firstEnglishWord)
-
-    let isOneWord = true
-    if (leftEnglishWords.split(' ').length > 1) {
-        isOneWord = false
-    }
-    axios
-        .get('https://api.dictionaryapi.dev/api/v2/entries/en/' + firstEnglishWord)
-        .then(function (response) {
-            // console.log('response.data ', response.data)
-            sendRandomWord(response.data, randomIndex, wordLineDictionary, isOneWord)
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error)
-        })
         .finally(function () {
             // always executed
         })
 }
 
-function sendRandomWord(response, randomIndex, word, isOneWord) {
-    // console.log('response[0] ', response[0])
-    // console.log('response[0].phonetic ', response[0].phonetic)
-    console.log('response[0].phonetics ', response[0].phonetics)
-    // console.log('response[0].phonetics.text ', response[0].phonetics[1].text)
-    // console.log('response[0].phonetics.audio ', response[0].phonetics[1].audio)
-    // console.log('response[0].meanings ', response[0].meanings[0].partOfSpeech)
-    // console.log('response[0].meanings ', response[0].meanings[0].definitions)
-    // console.log('response[0].meanings ', response[0].meanings[0].definitions[0].example)
-
-    let examples = ''
-    for (const key in response[0].meanings[0].definitions) {
-        if (response[0].meanings[0].definitions[key].example != undefined) {
-            examples += `- ${response[0].meanings[0].definitions[key].example}
-`
-        }
-    }
-
-    let phonetic = ''
-    for (const key in response[0].phonetics) {
-        if (response[0].phonetics[key].text != undefined) {
-            phonetic = response[0].phonetics[key].text
-        }
-    }
-    let audio = ''
-    for (const key in response[0].phonetics) {
-        if (response[0].phonetics[key].audio != undefined) {
-            audio = response[0].phonetics[key].audio
-        }
-    }
-    let phoneticLine = phonetic
-        ? `${phonetic} - `
-        : response[0]?.phonetic
-        ? `${response[0]?.phonetic} - `
-        : ''
-    phoneticLine = isOneWord ? phoneticLine : ''
-
-    let exampleLine = examples && isOneWord ? `${examples}` : ''
-
-    let audioLine =
-        audio && isOneWord
-            ? `${audio}`
-            : response[0]?.phonetics[1]?.audio
-            ? `${response[0]?.phonetics[1]?.audio}`
-            : ''
-
-    let textMessage =
-        `<b>__________________</b>
-        ` +
-        `<b>${randomIndex + 1}. ${phoneticLine}${word} </b>` +
-        `
-        
-        
-        
-${exampleLine}
-${audioLine}
-`
-
-    bot.sendMessage(chatIdAdmin, textMessage, { parse_mode: 'HTML' })
-
-    date = new Date()
-    console.log(date.toLocaleTimeString(), `--- ${randomIndex + 1}.${word}`)
-}
-
 // const say = require('say')
-
-// https://api.dictionaryapi.dev/api/v2/entries/en/hello
 
 function openStartMenu(chatId) {
     bot.sendMessage(chatId, 'Клавиатура открыта', startMenu)
@@ -212,15 +124,15 @@ bot.on('message', (msg) => {
 
 const ms = 1000
 const sec = 60
-
-// const min = 0.1 //10sec
+const min = 0.1 //10sec
 // const min = 1 // 1min
-const min = 10 // 10min
+// const min = 10 // 10min
 // const min = 30 // 30min
 
 let interval = min * sec * ms
 
 console.log('server started with interval:', interval / ms / sec, ' min')
 
-getWord() //первый запуск при  старте сервера
-setInterval(getWord, interval) //  запуск getWord по интервалу
+getWordFromDictionary(dictionary) //first run at the start of the server
+
+setInterval(() => getWordFromDictionary(dictionary), interval) //  start function by interval
