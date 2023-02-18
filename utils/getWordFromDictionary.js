@@ -1,10 +1,9 @@
 const axios = require('axios')
-
 const TelegramBot = require('node-telegram-bot-api')
 const token = process.env.TELEGRAM_BOT_TOKEN
-
 const bot = new TelegramBot(token, { polling: true })
 const chatIdAdmin = process.env.CHAT_ID_ADMIN
+const prepareText = require('./prepareText')
 
 const getWordFromDictionary = (dictionary) => {
     const randomIndex = Math.floor(Math.random() * dictionary.length)
@@ -34,7 +33,7 @@ const getWordFromDictionary = (dictionary) => {
             .get('https://api.dictionaryapi.dev/api/v2/entries/en/' + firstEnglishWord)
             .then(function (response) {
                 // console.log('response.data ', response.data)
-                let textMessage = sendRandomWord(
+                let textMessage = prepareText(
                     response.data,
                     randomIndex,
                     wordLineDictionary,
@@ -54,63 +53,10 @@ const getWordFromDictionary = (dictionary) => {
             })
 }
 
-function sendRandomWord(response, randomIndex, word, isOneWord) {
-    let examples = ''
-    for (const key in response[0].meanings[0].definitions) {
-        if (response[0].meanings[0].definitions[key].example != undefined) {
-            examples += `- ${response[0].meanings[0].definitions[key].example}
-`
-        }
-    }
-    // console.log('translateText(examples)', translateText(examples))
-
-    let phonetic = ''
-    for (const key in response[0].phonetics) {
-        if (response[0].phonetics[key].text != undefined) {
-            phonetic = response[0].phonetics[key].text
-        }
-    }
-    let audio = ''
-    for (const key in response[0].phonetics) {
-        if (response[0].phonetics[key].audio != undefined) {
-            audio = response[0].phonetics[key].audio
-        }
-    }
-    let phoneticLine = phonetic
-        ? `${phonetic} - `
-        : response[0]?.phonetic
-        ? `${response[0]?.phonetic} - `
-        : ''
-    phoneticLine = isOneWord ? phoneticLine : ''
-
-    let exampleLine = examples && isOneWord ? `${examples}` : ''
-
-    let audioLine =
-        audio && isOneWord
-            ? `${audio}`
-            : response[0]?.phonetics[1]?.audio
-            ? `${response[0]?.phonetics[1]?.audio}`
-            : ''
-
-    date = new Date()
-    console.log(date.toLocaleTimeString(), `--- ${randomIndex + 1}.${word}`)
-
-    return (textMessage =
-        // let textMessage =
-        `<b>__________________</b>
- <b>${randomIndex + 1}. ${phoneticLine}${word} </b>` +
-        '\r\n' +
-        '\r\n' +
-        `
-${exampleLine}
-${audioLine}
-`)
-}
-
 console.log(module)
 
-module.exports = getWordFromDictionary
-// module.exports = [  getWordFromDictionary ,sendRandomWord ]
-
+// module.exports = [  getWordFromDictionary ,prepareText ]
 // module.exports = {  getWordFromDictionary }
+module.exports = getWordFromDictionary
+
 console.log(module)

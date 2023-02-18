@@ -9,57 +9,14 @@ const dictionaryText = require('./data/dictionaryText.js')
 const startMenu = require('./constants/constants.js')
 const mainMenu = require('./constants/constants.js')
 // const { ms, sec, interval } = require('./constants/interval.js')
-const getWordFromDictionary = require('./utils/utils.js')
-// const { getWordFromDictionary, sendRandomWord } = require('./utils/utils.js')
+
+// const { getWordFromDictionary, prepareText } = require('./utils/utils.js')
 const axios = require('axios')
 var _ = require('lodash')
+const getWordFromDictionary = require('./utils/getWordFromDictionary.js')
+// const getIamToken = require('./utils/getIamToken.js')
 
-let date = new Date()
-const dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
-
-const jose = require('node-jose')
-const private_key = process.env.PRIVATE_KEY.replace(/\\n/g, '\n')
-const serviceAccountId = process.env.SERVICE_ACCOUNT_ID
-const keyId = process.env.KEY_ID
-const now = Math.floor(new Date().getTime() / 1000)
-// const say = require('say')
-
-const payload = {
-    aud: 'https://iam.api.cloud.yandex.net/iam/v1/tokens',
-    iss: serviceAccountId,
-    iat: now,
-    exp: now + 3600,
-}
-
-let IAM_TOKEN
-
-jose.JWK.asKey(private_key, 'pem', { kid: keyId, alg: 'PS256' }).then(function (result) {
-    jose.JWS.createSign({ format: 'compact' }, result)
-        .update(JSON.stringify(payload))
-        .final()
-        .then(function (result) {
-            const jwt_token = result
-
-            const body = {
-                //  includes only one of the fields `yandexPassportOauthToken`, `jwt`
-                // "yandexPassportOauthToken": process.env.OAUTH_TOKEN,
-                jwt: jwt_token,
-                // end of the list of possible fields
-            }
-
-            axios
-                .post('https://iam.api.cloud.yandex.net/iam/v1/tokens', body)
-                .then((response) => {
-                    // console.log('response.data', response.data)
-                    IAM_TOKEN = response.data.iamToken
-                })
-                .catch((error) => {
-                    console.log('AXIOS ERROR_jwt: ', error.response)
-                })
-        })
-})
-
-// const say = require('say')
+ const dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
 
 function openStartMenu(chatId) {
     bot.sendMessage(chatId, 'Клавиатура открыта', startMenu)
@@ -97,7 +54,7 @@ bot.on('message', (msg) => {
         bot.sendMessage(chatIdAdmin, `Successfully added "${msg.text}" to the dictionary.`)
     }
 })
- 
+
 const ms = 1000
 const sec = 60
 
