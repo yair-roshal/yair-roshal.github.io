@@ -32,26 +32,21 @@ const getWordFromDictionary = (dictionary) => {
         axios
             .get('https://api.dictionaryapi.dev/api/v2/entries/en/' + firstEnglishWord)
             .then(function (response) {
-                // console.log('response.data ', response.data)
                 let textMessage = prepareMessage(
                     response.data,
                     randomIndex,
                     wordLineDictionary,
                     isOneWord,
-                    firstEnglishWord
+                    firstEnglishWord,
                 )
 
                 bot.sendMessage(chatIdAdmin, textMessage, { parse_mode: 'HTML' })
             })
             .catch(function (error) {
-                // handle error
-                // console.log('axios_error_api.dictionaryapi')
-                // handle error
-                console.log('axios_error_api.dictionaryapi===', error)
+                 // console.log('axios_error_api.dictionaryapi')
+                 console.log('axios_error_api.dictionaryapi ===', error)
             })
-            .finally(function () {
-                // always executed
-            })
+            
 }
 
 console.log(module)
