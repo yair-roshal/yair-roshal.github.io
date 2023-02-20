@@ -8,23 +8,19 @@ const chatIdAdmin = process.env.CHAT_ID_ADMIN
 const dictionaryText = require('./data/dictionaryText.js')
 const startMenu = require('./constants/constants.js')
 const mainMenu = require('./constants/constants.js')
-// const { ms, sec, interval } = require('./constants/interval.js')
-
-// const { getWordFromDictionary, prepareText } = require('./utils/utils.js')
-const axios = require('axios')
+const { sec, ms, interval } = require('./constants/interval.js')
 var _ = require('lodash')
 const getWordFromDictionary = require('./utils/getWordFromDictionary.js')
-// const getIamToken = require('./utils/getIamToken.js')
 
- const dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
+const dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
 
 function openStartMenu(chatId) {
-    bot.sendMessage(chatId, 'Клавиатура открыта', startMenu)
+    bot.sendMessage(chatId, 'The keyboard is open', startMenu)
 }
 
 bot.onText(/\/start/, (msg, match) => {
     const chatId = msg.chat.id
-    bot.sendMessage(chatId, 'Приветик, ' + msg.chat.first_name + '!', mainMenu)
+    bot.sendMessage(chatId, 'Hello, ' + msg.chat.first_name + '!', mainMenu)
     openStartMenu(chatId)
 })
 
@@ -54,16 +50,6 @@ bot.on('message', (msg) => {
         bot.sendMessage(chatIdAdmin, `Successfully added "${msg.text}" to the dictionary.`)
     }
 })
-
-const ms = 1000
-const sec = 60
-
-const min = 0.1 //10sec
-// const min = 1 // 1min
-// const min = 10 // 10min
-// const min = 30 // 30min
-
-let interval = min * sec * ms
 
 console.log('server started with interval:', interval / ms / sec, ' min')
 

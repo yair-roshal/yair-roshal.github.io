@@ -1,7 +1,8 @@
 // const translateText = require('./translateText')
 // const getIamToken = require('./getIamToken')
+const axios = require('axios')
 
-function prepareText(response, randomIndex, word, isOneWord) {
+function prepareMessage(response, randomIndex, word, isOneWord, firstEnglishWord) {
     let examples = ''
     for (const key in response[0].meanings[0].definitions) {
         if (response[0].meanings[0].definitions[key].example != undefined) {
@@ -23,12 +24,19 @@ function prepareText(response, randomIndex, word, isOneWord) {
             phonetic = response[0].phonetics[key].text
         }
     }
-    let audio = ''
+
+    let audio
+
     for (const key in response[0].phonetics) {
         if (response[0].phonetics[key].audio != undefined) {
             audio = response[0].phonetics[key].audio
         }
     }
+
+    if (!audio) {
+        audio = `https://translate.google.com.vn/translate_tts?ie=UTF-8&q=${firstEnglishWord}&tl=en&client=tw-ob`
+    }
+
     let phoneticLine = phonetic
         ? `${phonetic} - `
         : response[0]?.phonetic
@@ -60,4 +68,4 @@ ${audioLine}
 `)
 }
 
-module.exports = prepareText
+module.exports = prepareMessage

@@ -8,4 +8,4 @@ const min = 0.1 //10sec
 
 let interval = min * sec * ms
 
-module.exports = [ms, sec, min, interval]
+module.exports = {ms, sec, min, interval}
