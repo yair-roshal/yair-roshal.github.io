@@ -57,13 +57,13 @@ function prepareMessage(response, randomIndex, word, isOneWord, firstEnglishWord
     console.log(date.toLocaleTimeString(), `--- ${randomIndex + 1}.${word}`)
 
     return (textMessage =
-         `<b>__________________</b>
+        `<b>__________________</b>
  <b>${randomIndex + 1}. ${phoneticLine}${word} </b>` +
         '\r\n' +
         '\r\n' +
         `
 ${exampleLine}
-${audioLine}
+<a href="${audioLine}"></a>
 `)
 }
 
