@@ -63,7 +63,7 @@ function prepareMessage(response, randomIndex, word, isOneWord, firstEnglishWord
         '\r\n' +
         `
 ${exampleLine}
-<a href="${audioLine}"></a>
+<a href="${audioLine}">.</a>
 `)
 }
 
