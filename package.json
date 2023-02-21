@@ -4,7 +4,7 @@
     "main": "server.js",
     "scripts": {
         "start": "node server.js",
-        "dev": "NODE_ENV=dev  node server.js",
+        "dev": "NODE_ENV=dev node server.js",
         "prod": "NODE_ENV=prod node server.js"
     },
     "author": "Yair Roshal",

@@ -64,7 +64,7 @@ function prepareMessage(response, randomIndex, word, isOneWord, firstEnglishWord
         `
 ${exampleLine}
 <a href="${audioLine}">.</a>
-`)
+<b>__________________</b>`)
 }
 
 module.exports = prepareMessage
