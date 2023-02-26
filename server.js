@@ -8,11 +8,18 @@ const chatIdAdmin = process.env.CHAT_ID_ADMIN
 const dictionaryText = require('./data/dictionaryText.js')
 const startMenu = require('./constants/constants.js')
 const mainMenu = require('./constants/constants.js')
+
 const { sec, ms, interval } = require('./constants/interval.js')
 var _ = require('lodash')
 const getWordFromDictionary = require('./utils/getWordFromDictionary.js')
 
 const dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
+
+const dictionaryTextFromFile = require('./utils/dictionaryTextFromFile.js')
+dictionaryTextFromFile()
+
+const dictionaryTextToFile = require('./utils/dictionaryTextToFile.js')
+dictionaryTextToFile()
 
 function openStartMenu(chatId) {
     bot.sendMessage(chatId, 'The keyboard is open', startMenu)

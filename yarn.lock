@@ -626,7 +626,7 @@
     "jsonfile" "^6.0.1"
     "universalify" "^2.0.0"
 
-"fs@0.0.1-security":
+"fs@^0.0.1-security":
   "integrity" "sha512-3XY9e1pP0CVEUCdj5BmfIZxRBTSDycnbqhIOGec9QYtmVH2fbLpj86CFWkrNOkt/Fvty4KZG5lTglL9j/gJ87w=="
   "resolved" "https://registry.npmjs.org/fs/-/fs-0.0.1-security.tgz"
   "version" "0.0.1-security"

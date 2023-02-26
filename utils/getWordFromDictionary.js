@@ -46,18 +46,10 @@ const getWordFromDictionary = (dictionary) => {
                 bot.sendMessage(chatIdAdmin, textMessage, {
                     parse_mode: 'HTML',
                 })
-
-                // bot.sendAudio(
-                //     chatIdAdmin,
-                //     'https://translate.google.com.vn/translate_tts?ie=UTF-8&q=dedicate&tl=en&client=tw-ob',
-                //     {
-                //         caption: 'Check out this audio!',
-                //     },
-                // )
             })
             .catch(function (error) {
-                // console.log('axios_error_api.dictionaryapi')
-                console.log('axios_error_api.dictionaryapi ===', error)
+                console.log('axios_error_we dont have this word in our api')
+                // console.log('axios_error_api.dictionaryapi ===', error)
             })
 }
 

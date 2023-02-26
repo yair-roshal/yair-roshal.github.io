@@ -1,6 +1,6 @@
 // const translateText = require('./translateText')
 // const getIamToken = require('./getIamToken')
-const axios = require('axios')
+const logWords = require('../utils/logWords')
 
 function prepareMessage(
     response,
@@ -60,7 +60,9 @@ function prepareMessage(
             : ''
 
     date = new Date()
+
     console.log(date.toLocaleTimeString(), `--- ${randomIndex + 1}.${word}`)
+    logWords(date.toLocaleTimeString()+ `--- ${randomIndex + 1}.${word}`)
 
     return (textMessage =
         `<b>__________________</b>

@@ -1,4 +1,4 @@
-const dictionaryText = `
+
 attractive - привлекательный
  spell, spelt, spelled - писать или произносить (слово) по буквам 
 зависит - depends
@@ -469,6 +469,3 @@ wanna - want to
 asap - as soon as possible — как можно скорее
 'bout - about
 ya - you
-`
-
-module.exports = dictionaryText
