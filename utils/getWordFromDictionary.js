@@ -9,16 +9,16 @@ const getWordFromDictionary = (dictionary) => {
     const randomIndex = Math.floor(Math.random() * dictionary.length)
     let wordLineDictionary = dictionary[randomIndex]
     const leftEnglishWords = wordLineDictionary.split('-')[0].trim()
-    console.log('_______________->')
+    console.log('________________________')
     firstEnglishWord = leftEnglishWords.split(' ')[0]
-    console.log('firstEnglishWord -->', firstEnglishWord)
+    // console.log('firstEnglishWord -->', firstEnglishWord)
 
     let isEnglishLanguage
     if (/[a-zA-Z]/.test(firstEnglishWord)) {
-        console.log('only english char')
+        // console.log('only english char')
         isEnglishLanguage = true
     } else {
-        console.log('not only english char')
+        // console.log('not only english char')
         isEnglishLanguage = false
     }
 

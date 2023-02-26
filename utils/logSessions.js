@@ -8,13 +8,10 @@ module.exports = function dictionaryTextToFile() {
     let path = getPathLogs()
 
     fs.appendFile(`${path}${nameFileLog}`, lineText, (err) => {
-        if (err) {
-            console.log(err)
+        if (!err) {
+            console.log(`log for this session added`)
         } else {
-            console.log(
-                '\nFile Contents of file after append:\n',
-                fs.readFileSync(`${path}${nameFileLog}`, 'utf8'),
-            )
+            console.log(err)
         }
     })
 }

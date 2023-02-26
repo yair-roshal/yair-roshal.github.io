@@ -61,8 +61,8 @@ function prepareMessage(
 
     date = new Date()
 
-    console.log(date.toLocaleTimeString(), `--- ${randomIndex + 1}.${word}`)
-    logWords(date.toLocaleTimeString()+ `--- ${randomIndex + 1}.${word}`)
+    console.log(`${randomIndex + 1}.${word}` + date.toLocaleTimeString())
+    logWords(`${randomIndex + 1}.${word}` + date.toLocaleTimeString())
 
     return (textMessage =
         `<b>__________________</b>
