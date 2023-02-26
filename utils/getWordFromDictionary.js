@@ -30,7 +30,10 @@ const getWordFromDictionary = (dictionary) => {
     isEnglishLanguage &&
         isOneWord &&
         axios
-            .get('https://api.dictionaryapi.dev/api/v2/entries/en/' + firstEnglishWord)
+            .get(
+                'https://api.dictionaryapi.dev/api/v2/entries/en/' +
+                    firstEnglishWord,
+            )
             .then(function (response) {
                 let textMessage = prepareMessage(
                     response.data,
@@ -40,7 +43,10 @@ const getWordFromDictionary = (dictionary) => {
                     firstEnglishWord,
                 )
 
-                bot.sendMessage(chatIdAdmin, textMessage, { parse_mode: 'HTML' })
+                bot.sendMessage(chatIdAdmin, textMessage, {
+                    parse_mode: 'HTML',
+                })
+
                 // bot.sendAudio(
                 //     chatIdAdmin,
                 //     'https://translate.google.com.vn/translate_tts?ie=UTF-8&q=dedicate&tl=en&client=tw-ob',

@@ -2,7 +2,13 @@
 // const getIamToken = require('./getIamToken')
 const axios = require('axios')
 
-function prepareMessage(response, randomIndex, word, isOneWord, firstEnglishWord) {
+function prepareMessage(
+    response,
+    randomIndex,
+    word,
+    isOneWord,
+    firstEnglishWord,
+) {
     let examples = ''
     for (const key in response[0].meanings[0].definitions) {
         if (response[0].meanings[0].definitions[key].example != undefined) {

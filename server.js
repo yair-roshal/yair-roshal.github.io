@@ -47,7 +47,10 @@ bot.on('message', (msg) => {
         bot.sendMessage(chatIdAdmin, `Server-Bot successfully started  `)
     } else if (!dictionary.includes(msg.text) && msg.text !== '/start') {
         dictionary = dictionary.concat(msg.text.split(/\r?\n/))
-        bot.sendMessage(chatIdAdmin, `Successfully added "${msg.text}" to the dictionary.`)
+        bot.sendMessage(
+            chatIdAdmin,
+            `Successfully added "${msg.text}" to the dictionary.`,
+        )
     }
 })
 
