@@ -1,5 +1,4 @@
 let fs = require('fs')
-let dictionaryText = require('../0-save/dictionaryText')
 let appendFile = require('node:fs')
 const getPathLogs = require('./getPathLogs')
 

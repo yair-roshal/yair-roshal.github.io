@@ -18,8 +18,6 @@ const getWordFromDictionary = require('./utils/getWordFromDictionary.js')
 
 const dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
 
-
-
 const dictionaryTextToFile = require('./utils/dictionaryTextToFile.js')
 dictionaryTextToFile()
 

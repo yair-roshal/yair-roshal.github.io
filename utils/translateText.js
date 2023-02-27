@@ -4,7 +4,8 @@ const {
     target_language,
 } = require('../constants/languages.js')
 
-async function translateText(texts, IAM_TOKEN) {
+module.exports = async function translateText(texts, IAM_TOKEN) {
+    let translate
     const body = {
         sourceLanguageCode: source_language,
         targetLanguageCode: target_language,
@@ -17,7 +18,7 @@ async function translateText(texts, IAM_TOKEN) {
 
     const headers = { headers: { Authorization: `Bearer ${IAM_TOKEN}` } }
 
-    await axios
+    translate = await axios
         .post(
             'https://translate.api.cloud.yandex.net/translate/v2/translate',
             body,
@@ -25,7 +26,7 @@ async function translateText(texts, IAM_TOKEN) {
         )
         .then((response) => {
             translate = response.data.translations[0].text
-            console.log('translate000', translate)
+            // console.log('translate000', translate)
             return translate
             // resolve(translate)
         })
@@ -33,10 +34,5 @@ async function translateText(texts, IAM_TOKEN) {
             console.log('ERROR_translate: ')
             // console.log('ERROR_translate: ', error.response)
         })
-
-        .finally(function () {
-            // always executed
-        })
+    return translate
 }
-
-module.exports = translateText

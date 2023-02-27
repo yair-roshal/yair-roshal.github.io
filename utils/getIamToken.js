@@ -25,7 +25,7 @@ async function changeTokenToIAM(body) {
     }
 }
 
-const getIamToken = () => {
+module.exports = async function getIamToken() {
     const payload = {
         aud: 'https://iam.api.cloud.yandex.net/iam/v1/tokens',
         iss: serviceAccountId,
@@ -52,13 +52,11 @@ const getIamToken = () => {
                         // console.log('res_changeTokenToIAM:', res)
                         IAM_TOKEN = res
                         // console.log('IAM_TOKEN111_changeTokenToIAM:', IAM_TOKEN)
-                        // return IAM_TOKEN
+                        return IAM_TOKEN
                     })
                 })
         },
     )
-    console.log('IAM_TOKEN4444', IAM_TOKEN)
+    // console.log('IAM_TOKEN4444', IAM_TOKEN)
     return IAM_TOKEN
 }
-
-module.exports = getIamToken

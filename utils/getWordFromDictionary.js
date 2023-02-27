@@ -35,17 +35,30 @@ const getWordFromDictionary = (dictionary) => {
                     firstEnglishWord,
             )
             .then(function (response) {
-                let textMessage = prepareMessage(
+                prepareMessage(
                     response.data,
                     randomIndex,
                     wordLineDictionary,
                     isOneWord,
                     firstEnglishWord,
-                )
-
-                bot.sendMessage(chatIdAdmin, textMessage, {
-                    parse_mode: 'HTML',
+                ).then((textMessage) => {
+                    // console.log('textMessage1111', textMessage)
+                    bot.sendMessage(chatIdAdmin, textMessage, {
+                        parse_mode: 'HTML',
+                    })
                 })
+
+                // let textMessage = prepareMessage(
+                //     response.data,
+                //     randomIndex,
+                //     wordLineDictionary,
+                //     isOneWord,
+                //     firstEnglishWord,
+                // )
+
+                // bot.sendMessage(chatIdAdmin, textMessage, {
+                //     parse_mode: 'HTML',
+                // })
             })
             .catch(function (error) {
                 console.log(
