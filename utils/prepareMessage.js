@@ -22,21 +22,26 @@ module.exports = async function prepareMessage(
         token = result
 
         let examples = ''
-        for (const key in response[0].meanings[0].definitions) {
-            if (response[0].meanings[0].definitions[key].example != undefined) {
-                examples +=
-                    '\r\n' +
-                    `- ${response[0].meanings[0].definitions[key].example}`
+        for (const key0 in response[0].meanings) {
+            for (const key in response[0].meanings[key0].definitions) {
+                if (
+                    response[0].meanings[key0].definitions[key].example !=
+                    undefined
+                ) {
+                    examples +=
+                        '\r\n' +
+                        `- ${response[0].meanings[key0].definitions[key].example}`
 
-                let translateTextVar
-                await translateText(
-                    response[0].meanings[0].definitions[key].example,
-                    token,
-                ).then((res) => {
-                    translateTextVar = res
-                    console.log('translateTextVar222', translateTextVar)
-                    examples += '\r\n' + '-' + translateTextVar + '\r\n'
-                })
+                    let translateTextVar
+                    await translateText(
+                        response[0].meanings[key0].definitions[key].example,
+                        token,
+                    ).then((res) => {
+                        translateTextVar = res
+                        console.log('translateTextVar222', translateTextVar)
+                        examples += '\r\n' + '-' + translateTextVar + '\r\n'
+                    })
+                }
             }
         }
 
@@ -83,7 +88,7 @@ module.exports = async function prepareMessage(
 
         return (
             `<b>__________________</b>
- <b>${randomIndex + 1}/${dictionaryLength}.  ${phoneticLine}${word} </b>` +
+ <b>${randomIndex + 1}/(${dictionaryLength}).  ${phoneticLine}${word} </b>` +
             '\r\n' +
             '\r\n' +
             `
