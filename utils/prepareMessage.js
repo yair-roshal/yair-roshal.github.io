@@ -17,28 +17,28 @@ module.exports = async function prepareMessage(
         })
     }
 
-    return getIamTokenNow().then(function (result) {
+    return getIamTokenNow().then(async function (result) {
         // console.log('result11111', result)
         token = result
 
         let examples = ''
         for (const key in response[0].meanings[0].definitions) {
             if (response[0].meanings[0].definitions[key].example != undefined) {
-                examples += `- ${response[0].meanings[0].definitions[key].example}`
+                examples +=
+                    '\r\n' +
+                    `- ${response[0].meanings[0].definitions[key].example}`
 
                 let translateTextVar
-                 translateText(
+                await translateText(
                     response[0].meanings[0].definitions[key].example,
                     token,
                 ).then((res) => {
-                    console.log('res2222', res)
+                    // console.log('res2222', res)
                     translateTextVar = res
                     // return res
                     console.log('translateTextVar222', translateTextVar)
-                    examples += '\r\n' + translateTextVar
+                    examples += '\r\n' + '-' + translateTextVar + '\r\n'
                 })
-
-               
             }
         }
 
