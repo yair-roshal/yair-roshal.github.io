@@ -13,9 +13,6 @@ module.exports = async function translateText(texts, IAM_TOKEN) {
         folderId: process.env.folder_id,
     }
 
-    // console.log('body', body)
-    // console.log('IAM_TOKEN', IAM_TOKEN)
-
     const headers = { headers: { Authorization: `Bearer ${IAM_TOKEN}` } }
 
     translate = await axios
@@ -26,13 +23,10 @@ module.exports = async function translateText(texts, IAM_TOKEN) {
         )
         .then((response) => {
             translate = response.data.translations[0].text
-            // console.log('translate000', translate)
             return translate
-            // resolve(translate)
         })
         .catch((error) => {
             console.log('ERROR_translate: ')
-            // console.log('ERROR_translate: ', error.response)
         })
     return translate
 }

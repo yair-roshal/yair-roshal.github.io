@@ -10,6 +10,7 @@ module.exports = async function prepareMessage(
     word,
     isOneWord,
     firstEnglishWord,
+    dictionaryLength,
 ) {
     let getIamTokenNow = function () {
         return getIamToken().then((res) => {
@@ -18,7 +19,6 @@ module.exports = async function prepareMessage(
     }
 
     return getIamTokenNow().then(async function (result) {
-        // console.log('result11111', result)
         token = result
 
         let examples = ''
@@ -33,9 +33,7 @@ module.exports = async function prepareMessage(
                     response[0].meanings[0].definitions[key].example,
                     token,
                 ).then((res) => {
-                    // console.log('res2222', res)
                     translateTextVar = res
-                    // return res
                     console.log('translateTextVar222', translateTextVar)
                     examples += '\r\n' + '-' + translateTextVar + '\r\n'
                 })
@@ -85,7 +83,7 @@ module.exports = async function prepareMessage(
 
         return (
             `<b>__________________</b>
- <b>${randomIndex + 1}. ${phoneticLine}${word} </b>` +
+ <b>${randomIndex + 1}/${dictionaryLength}.  ${phoneticLine}${word} </b>` +
             '\r\n' +
             '\r\n' +
             `
@@ -93,15 +91,5 @@ ${exampleLine}
 <a href="${audioLine}">.</a>
 <b>__________________</b>`
         )
-
-        //         return (textMessage =
-        //             `<b>__________________</b>
-        //  <b>${randomIndex + 1}. ${phoneticLine}${word} </b>` +
-        //             '\r\n' +
-        //             '\r\n' +
-        //             `
-        // ${exampleLine}
-        // <a href="${audioLine}">.</a>
-        // <b>__________________</b>`)
     })
 }

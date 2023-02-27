@@ -11,14 +11,13 @@ const getWordFromDictionary = (dictionary) => {
     const leftEnglishWords = wordLineDictionary.split('-')[0].trim()
     console.log('________________________')
     firstEnglishWord = leftEnglishWords.split(' ')[0]
-    // console.log('firstEnglishWord -->', firstEnglishWord)
 
     let isEnglishLanguage
     if (/[a-zA-Z]/.test(firstEnglishWord)) {
-        // console.log('only english char')
+        // only english char
         isEnglishLanguage = true
     } else {
-        // console.log('not only english char')
+        // not only english char
         isEnglishLanguage = false
     }
 
@@ -41,24 +40,12 @@ const getWordFromDictionary = (dictionary) => {
                     wordLineDictionary,
                     isOneWord,
                     firstEnglishWord,
+                    dictionary.length,
                 ).then((textMessage) => {
-                    // console.log('textMessage1111', textMessage)
                     bot.sendMessage(chatIdAdmin, textMessage, {
                         parse_mode: 'HTML',
                     })
                 })
-
-                // let textMessage = prepareMessage(
-                //     response.data,
-                //     randomIndex,
-                //     wordLineDictionary,
-                //     isOneWord,
-                //     firstEnglishWord,
-                // )
-
-                // bot.sendMessage(chatIdAdmin, textMessage, {
-                //     parse_mode: 'HTML',
-                // })
             })
             .catch(function (error) {
                 console.log(

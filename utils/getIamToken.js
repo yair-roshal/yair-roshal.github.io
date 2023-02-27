@@ -14,9 +14,7 @@ async function changeTokenToIAM(body) {
         const result = await axios
             .post('https://iam.api.cloud.yandex.net/iam/v1/tokens', body)
             .then((response) => {
-                // console.log('response.data', response.data)
                 let IAM_TOKEN = response.data.iamToken
-                // console.log('new IAM_TOKEN====', IAM_TOKEN)
                 return IAM_TOKEN
             })
         return result
@@ -40,7 +38,6 @@ module.exports = async function getIamToken() {
                 .final()
                 .then(function (result) {
                     const jwt_token = result
-                    // console.log('jwt_token', jwt_token)
                     const body = {
                         //  includes only one of the fields `yandexPassportOauthToken`, `jwt`
                         // "yandexPassportOauthToken": process.env.OAUTH_TOKEN,
@@ -49,14 +46,11 @@ module.exports = async function getIamToken() {
                     }
 
                     changeTokenToIAM(body).then((res) => {
-                        // console.log('res_changeTokenToIAM:', res)
                         IAM_TOKEN = res
-                        // console.log('IAM_TOKEN111_changeTokenToIAM:', IAM_TOKEN)
                         return IAM_TOKEN
                     })
                 })
         },
     )
-    // console.log('IAM_TOKEN4444', IAM_TOKEN)
     return IAM_TOKEN
 }

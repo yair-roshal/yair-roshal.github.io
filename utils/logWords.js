@@ -8,7 +8,6 @@ module.exports = function logWords(wordLine) {
     let path = getPathLogs()
     fs.appendFile(`${path}${nameFileLog}`, wordLine + '\r\n', (err) => {
         if (!err) {
-            // console.log(`log for word [ ${wordLine} ] added`)
         } else {
             console.log(err)
         }
