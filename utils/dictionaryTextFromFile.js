@@ -1,6 +1,5 @@
 let fs = require('fs')
 
- 
 module.exports = function dictionaryTextFromFile(nameFile) {
     nameFile = 'allwords.txt'
     try {
@@ -14,4 +13,3 @@ module.exports = function dictionaryTextFromFile(nameFile) {
         console.error(err)
     }
 }
- 

@@ -48,8 +48,11 @@ const getWordFromDictionary = (dictionary) => {
                 })
             })
             .catch(function (error) {
-                console.log('axios_error_we dont have this word in our api')
-                // console.log('axios_error_api.dictionaryapi ===', error)
+                console.log(
+                    'error_api.dictionaryapi.dev for word : ' +
+                        firstEnglishWord,
+                )
+                console.log('axios_error_api.dictionaryapi ===', error)
             })
 }
 

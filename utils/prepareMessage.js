@@ -1,5 +1,5 @@
-// const translateText = require('./translateText')
-// const getIamToken = require('./getIamToken')
+const translateText = require('./translateText')
+const getIamToken = require('./getIamToken')
 const logWords = require('../utils/logWords')
 
 function prepareMessage(
@@ -9,20 +9,25 @@ function prepareMessage(
     isOneWord,
     firstEnglishWord,
 ) {
+    // let token
+    let token = getIamToken().then((res) => {
+        // token = res
+        return res
+    })
+    console.log('toke2222n', token)
+
     let examples = ''
     for (const key in response[0].meanings[0].definitions) {
         if (response[0].meanings[0].definitions[key].example != undefined) {
-            examples += `- ${response[0].meanings[0].definitions[key].example}
-`
+            examples += `- ${response[0].meanings[0].definitions[key].example}`
+            examples +=
+                '\r\n' +
+                translateText(
+                    response[0].meanings[0].definitions[key].example,
+                    token,
+                )
         }
     }
-
-    // getIamToken().then((token) => {
-    //     console.log('token===', token)
-    //     // console.log('translateText ', translateText(examples, token))
-
-    //     return translateText(examples, token)
-    // })
 
     let phonetic = ''
     for (const key in response[0].phonetics) {
@@ -61,8 +66,9 @@ function prepareMessage(
 
     date = new Date()
 
-    console.log(`${randomIndex + 1}.${word}` + date.toLocaleTimeString())
-    logWords(`${randomIndex + 1}.${word}` + date.toLocaleTimeString())
+    let message = `${randomIndex + 1}.${word}  -  ` + date.toString()
+    console.log(message)
+    logWords(message)
 
     return (textMessage =
         `<b>__________________</b>

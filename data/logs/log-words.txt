@@ -1,4 +1,4 @@
- 12:27:50 AM--- 381.selfless - самоотверженный
+12:27:50 AM--- 381.selfless - самоотверженный
 12:28:20 AM--- 238.excited - воодушевлен
 12:28:26 AM--- 261.freely - свободно
 12:28:38 AM--- 272.hang - повесить
@@ -123,3 +123,49 @@
 12:55:32 AM--- 284.intended - [ɪnˈtendɪd]  предназначенный
 12:55:44 AM--- 108.addicted - зависимый
 12:55:50 AM--- 389.sight - взгляд, зрение
+138.attend -посещать, присутствовать1:07:27 AM
+229.entertaining - интересный, занимательный1:07:33 AM
+383.seniority - старшинство1:08:58 AM
+395.spelling - написание1:09:10 AM
+287.interrupted - прерванный1:09:16 AM
+204.disgust - отвращение1:09:22 AM
+238.excited - воодушевлен1:16:12 AM
+168.competitive - конкурентоспособный1:21:01 AM
+36.lacking  - отсутствует ,не хватает1:21:07 AM
+74.desperate - отчаянный1:21:13 AM
+31.suspended - приостановлено1:21:19 AM
+392.sneeze - чихать1:21:31 AM
+13.predicate -сказуемое1:24:43 AM
+175.confidence - уверенность1:27:14 AM
+417.though - хотя1:27:20 AM
+413.syllable - cлог  1:40:33 AM
+198.deny - отрицать  1:40:39 AM
+137.attempt -  [ɐtˈɛmpt ] попытка,пытаться  1:40:45 AM
+165.committed - привержен  1:40:57 AM
+72.consuming - потребление  1:42:54 AM
+432.vault - хранилище, подвал, склеп  1:43:00 AM
+322.odds - шансы  9:43:34 AM
+143.bankruptcy - банкротство  9:43:45 AM
+148.beyond - вдали  10:00:38 AM
+347.preference - предпочтение  10:00:49 AM
+7.politeness-вежливость  10:01:30 AM
+425.traction - тяга  10:01:36 AM
+299.loot - добыча, грабить  10:07:44 AM
+247.fair - справедливый  10:07:50 AM
+231.essence- [ˈes(ə)ns]суть, сущность  10:07:56 AM
+354.promoted - повысить  10:08:02 AM
+413.syllable - cлог  10:08:08 AM
+441.wounds - раны  10:08:14 AM
+231.essence- [ˈes(ə)ns]суть, сущность  10:08:26 AM
+352.proficiency - профессионализм  10:08:32 AM
+265.gap - зазор  10:08:50 AM
+247.fair - справедливый  10:08:56 AM
+405.supply - [səˈplaɪ] - поставка, подача,  10:09:02 AM
+8.upright - вертикальный  10:09:08 AM
+18.obtained - получено  -  Mon Feb 27 2023 10:19:11 GMT+0200 (Israel Standard Time)
+197.deduced - выведенный  -  Mon Feb 27 2023 10:19:23 GMT+0200 (Israel Standard Time)
+80.leverage - рычаг, кредитное плечо  -  Mon Feb 27 2023 10:26:32 GMT+0200 (Israel Standard Time)
+62.afford - позволить , приобрести   -  Mon Feb 27 2023 10:26:44 GMT+0200 (Israel Standard Time)
+7.politeness-вежливость  -  Mon Feb 27 2023 10:26:50 GMT+0200 (Israel Standard Time)
+352.proficiency - профессионализм  -  Mon Feb 27 2023 10:28:31 GMT+0200 (Israel Standard Time)
+197.deduced - выведенный  -  Mon Feb 27 2023 10:29:39 GMT+0200 (Israel Standard Time)

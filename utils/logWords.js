@@ -1,5 +1,5 @@
 let fs = require('fs')
-let dictionaryText = require('../data/dictionaryText')
+let dictionaryText = require('../0-save/dictionaryText')
 let appendFile = require('node:fs')
 const getPathLogs = require('./getPathLogs')
 
@@ -9,7 +9,7 @@ module.exports = function logWords(wordLine) {
     let path = getPathLogs()
     fs.appendFile(`${path}${nameFileLog}`, wordLine + '\r\n', (err) => {
         if (!err) {
-            console.log(`log for word [ ${wordLine} ] added`)
+            // console.log(`log for word [ ${wordLine} ] added`)
         } else {
             console.log(err)
         }

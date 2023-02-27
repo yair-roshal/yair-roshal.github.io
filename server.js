@@ -5,7 +5,10 @@ const token = process.env.TELEGRAM_BOT_TOKEN
 const bot = new TelegramBot(token, { polling: true })
 const chatIdAdmin = process.env.CHAT_ID_ADMIN
 
-const dictionaryText = require('./data/dictionaryText.js')
+// const dictionaryText = require('./data/dictionaryText.js')
+const dictionaryTextFromFile = require('./utils/dictionaryTextFromFile.js')
+const dictionaryText = dictionaryTextFromFile()
+
 const startMenu = require('./constants/constants.js')
 const mainMenu = require('./constants/constants.js')
 
@@ -15,8 +18,7 @@ const getWordFromDictionary = require('./utils/getWordFromDictionary.js')
 
 const dictionary = dictionaryText.split(/\r?\n/).filter(Boolean)
 
-const dictionaryTextFromFile = require('./utils/dictionaryTextFromFile.js')
-dictionaryTextFromFile()
+
 
 const dictionaryTextToFile = require('./utils/dictionaryTextToFile.js')
 dictionaryTextToFile()
